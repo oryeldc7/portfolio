@@ -14,28 +14,40 @@ body {
 /* Header and Navigation Styles */
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Centers items horizontally */
   align-items: center;
   width: 100%;
   padding: 20px;
-  background-color: blue; /* Blue header background */
+  background-color: yellow; /* Blue header background */
+  box-sizing: border-box; /* Includes padding in width calculation */
+  position: relative; /* Allows absolute positioning of the logo */
 }
 
 .header .logo {
-  width: 150px;
+  width: 200px;
   height: auto;
+  position: absolute; /* Removes logo from normal flow */
+  left: 20px; /* Aligns logo to the left side */
+}
+
+.primary {
+  text-align: center; /* Centers the content horizontally */
 }
 
 .primary ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  display: flex;
+  display: inline-flex; /* Keeps nav items in a single line */
   gap: 20px;
 }
 
+.primary ul li {
+  display: inline-block;
+}
+
 .primary ul li a {
-  color: white; /* White text for navigation links */
+  color: blue; /* White text for navigation links */
   text-decoration: none;
   font-size: 16px;
   padding: 10px;
@@ -44,19 +56,19 @@ body {
 }
 
 .primary ul li a:hover {
-  background-color: red; /* Red hover effect */
+  background-color: goldenrod; /* Red hover effect */
 }
 
 /* Main Heading and Paragraph Styles */
 #main-heading {
-  color: red; /* Red main heading */
+  color: goldenrod; /* Main heading color */
   font-size: 36px;
   margin: 40px 0 20px;
   text-align: center;
 }
 
 .indented-paragraph {
-  color: darkred; /* Dark red text for paragraphs */
+  color: black; /* Paragraph text color */
   max-width: 600px;
   margin: 20px;
   line-height: 1.6;
@@ -66,7 +78,7 @@ body {
 /* Section Heading Styles */
 #second-heading,
 section h2 {
-  color: red; /* Red for all section headings */
+  color: goldenrod; /* Section heading color */
   margin-top: 30px;
   font-size: 28px;
   text-align: center;
@@ -75,8 +87,7 @@ section h2 {
 /* Footer Styles */
 #colophon {
   text-align: center;
-  margin-top: 40px;
-  background-color: yellow; /* Yellow footer background */
+  margin-top: 150px;
   color: blue; /* Blue text for footer */
   padding: 20px 0;
 }
@@ -93,8 +104,8 @@ a {
 }
 
 a:hover {
-  color: white; /* White text when hovering over links */
-  background-color: blue; /* Blue background on hover */
+  color: blue; /* Keeps text color blue */
+  background-color: rgb(255, 0, 0); /* Red background on hover */
 }
 
 a:visited {
