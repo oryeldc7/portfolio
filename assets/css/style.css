@@ -14,21 +14,71 @@ body {
 /* Header and Navigation Styles */
 .header {
   display: flex;
-  justify-content: center; /* Centers items horizontally */
   align-items: center;
-  width: 100%;
   padding: 20px;
-  background-color: yellow; /* Blue header background */
-  box-sizing: border-box; /* Includes padding in width calculation */
-  position: relative; /* Allows absolute positioning of the logo */
+  background-color: yellow;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.header .logo {
-  width: 300px;
+.header .Profile {
+  width: 350px;
   height: auto;
-  position: absolute; /* Removes logo from normal flow */
-  left: 20px; /* Aligns logo to the left side */
+  position: absolute;
+  left: 20px;
+  object-fit: cover;
+  z-index: 1;
+  border-radius: 50px; /* Subtle rounded corners */
 }
+
+
+.primary {
+  display: flex;
+  gap: 20px;
+  margin-left: 320px;
+  flex-wrap: wrap;
+  width: calc(100% - 320px);
+}
+
+.content {
+  margin-left: 320px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .header .Profile {
+    width: 250px;
+    position: relative;
+    margin-bottom: 10px;
+    left: 0;
+  }
+
+  .primary {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 10px;
+    width: 100%;
+  }
+}
+
+
 
 .primary {
   text-align: center; /* Centers the content horizontally */
