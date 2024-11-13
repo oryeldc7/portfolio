@@ -1,10 +1,3 @@
-/* Prevent horizontal scrolling */
-html, body {
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
-
 /* Body and Layout Styles */
 body {
   background-color: #e2d2d2;
@@ -12,16 +5,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 100px; /* Adjust based on header height */
+  padding: 100px 20px 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Keep overflow hidden for larger screens */
 }
 
 /* Header and Navigation Styles */
 .header {
-  position: fixed; /* Fixes the header at the top */
-  top: 0;
-  left: 0;
+  position: fixed;
+  top: 0; left: 0;
   width: 100%;
-  z-index: 1000; /* Ensure it stays on top of other content */
+  z-index: 1000;
   background-color: yellow;
   padding: 20px;
   display: flex;
@@ -29,213 +23,105 @@ body {
   justify-content: center;
 }
 
-/* Profile Image Styles */
 .header .Profile {
-  width: 320px;
-  position: absolute;
-  left: 0;
-  margin-left: 30px;
-  margin-top: 20px;
+  width: 320px; height: 320px;
   object-fit: cover;
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 10px;
+  position: absolute;
+  left: 30px; top: 20px;
 }
 
-/* Content Styles */
 .content {
-  margin-left: 320px; /* Adjust to balance profile and content */
+  margin-left: 320px;
   padding: 20px;
   max-width: 70%;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-.primary {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
+/* Primary navigation styling */
 .primary ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 20px;
+  display: flex; gap: 20px;
+  list-style-type: none; margin: 0; padding: 0;
 }
 
 .primary ul li a {
-  color: blue;
-  text-decoration: none;
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 5px;
+  color: blue; text-decoration: none; padding: 10px; border-radius: 5px;
   transition: background-color 0.3s;
 }
 
-.primary ul li a:hover {
-  background-color: goldenrod;
+.primary ul li a:hover,
+.primary ul li a.active {
+  background-color: goldenrod; font-weight: bold; color: white;
 }
 
 /* Mobile Layout */
 @media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
+  .header { flex-direction: column; padding: 10px; }
+  .header .Profile { width: 150px; height: 150px; margin: 0; border-radius: 20px; }
+  .content { margin-left: 0; width: 100%; padding: 10px; }
+  .preview-img { width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
 
-  .header .Profile {
-    width: 250px;
-    margin-bottom: 10px;
-  }
-
-  .primary {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    text-align: center;
-  }
-
-  .content {
-    margin-left: 0;
-    width: 100%;
-    padding: 10px;
+  /* Enable horizontal scroll on mobile screens */
+  body {
+    overflow-x: auto; /* Enable horizontal scrolling */
   }
 }
 
-/* Main Heading and Paragraph Styles */
-#main-heading, #second-heading, section h2 {
-  color: goldenrod;
-  text-align: center;
+/* Text Styles */
+#main-heading, #second-heading, section h2, #projects h3 {
+  color: rgb(189, 145, 36); text-align: center;
 }
 
-#main-heading {
-  font-size: 36px;
-  margin: 40px 0 20px;
-}
-
-#second-heading, section h2 {
-  font-size: 28px;
-  margin-top: 30px;
-}
+#main-heading { font-size: 36px; margin: 40px 0 20px; }
+#second-heading, section h2 { font-size: 28px; margin-top: 30px; }
+#projects h3 { font-size: 24px; margin: 30px 0 10px; border-bottom: 2px solid goldenrod; padding-bottom: 5px; }
 
 .indented-paragraph {
-  color: black;
-  max-width: 600px;
-  margin: 20px;
-  line-height: 1.6;
-  text-align: center;
+  color: black; max-width: 600px; margin: 20px auto;
+  line-height: 1.6; text-align: justify;
 }
 
 /* Footer Styles */
-#colophon {
-  text-align: center;
-  margin-top: 150px;
-  color: blue;
-  padding: 20px 0;
-}
+#colophon { text-align: center; margin-top: 150px; color: blue; padding: 20px 0; }
 
-#colophon h6 {
-  margin: 0;
-  line-height: 1.5;
-}
+#colophon h6 { margin: 0; line-height: 1.5; }
 
-/* General Link Styles */
-a {
-  color: blue;
-  text-decoration: none;
-}
+a { color: blue; text-decoration: none; }
 
-a:hover {
-  background-color: goldenrod;
-}
+a:hover { background-color: goldenrod; }
 
-a:visited {
-  color: darkblue;
-}
+a:visited { color: darkblue; }
 
 /* Cover Letter Styles */
 .cover-letter {
-  background-color: white;
-  padding: 30px;
-  width: 70%;
-  margin: 50px auto;
-  border: 1px solid #ccc;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 900px;
-  font-size: 16px;
-  line-height: 1.6;
-  font-family: 'Arial', sans-serif;
-  color: #333;
-  border-radius: 10px;
+  background-color: white; padding: 30px; width: 100%; max-width: 700px;
+  margin: 50px auto; border: 1px solid #ccc; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 16px; line-height: 1.6; font-family: 'Times New Roman', sans-serif; color: #333; border-radius: 10px;
 }
 
-.cover-letter h2 {
-  color: goldenrod;
-  font-size: 20px;
-  margin-bottom: 20px;
-}
+.cover-letter h2 { color: goldenrod; font-size: 20px; margin-bottom: 20px; }
 
-.cover-letter p {
-  margin-bottom: 20px;
-  text-align: justify;
-}
+.cover-letter p { margin-bottom: 20px; text-align: justify; }
 
-#cover-letter {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-/* Mobile responsive design */
-@media (max-width: 768px) {
-  .cover-letter {
-    width: 90%;
-    padding: 20px;
-  }
-}
-
-/* Make the header stay at the top while scrolling */
-.header {
-  position: fixed; /* Fixes the header at the top */
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000; /* Ensure it stays on top of other content */
-  background-color: yellow;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Style for active menu item */
-.primary ul li a.active {
-  background-color: goldenrod;
-  font-weight: bold;
-  color: white; /* Ensure text color contrasts */
-}
-
-/* Style for active menu item */
-.primary ul li a.active {
-  background-color: goldenrod;
-  font-weight: bold;
-  color: white; /* Ensure text color contrasts */
-}
-
-/* Preview image styling */
+/* Preview Image Styling */
 .preview-img {
-  width: 500px; /* Adjust width as desired */
-  height: auto;
-  margin-right: 10px;
-  vertical-align: middle;
-  border-radius: 5px; /* Optional: rounded corners */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
+  width: 500px; height: auto; margin-right: 10px;
+  vertical-align: middle; border-radius: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* List item styling */
+@media (max-width: 768px) {
+  .preview-img { width: 100%; margin: 10px 0; }
+}
+
+/* List Item Styling */
 #projects ul li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
+  display: flex; align-items: center; margin-bottom: 15px; flex-direction: column; text-align: center;
 }
 
+/* Resume Styles */
+#resume {
+  background-color: white; padding: 30px; width: 100%; max-width: 800px;
+  margin: 50px auto; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px;
+  font-family: 'Times New Roman', sans-serif; color: #333;
+}
