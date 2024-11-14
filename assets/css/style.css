@@ -1,6 +1,6 @@
 /* General Layout */
 body {
-  background-color: #e2d2d2;
+  background-color: #e9d8a6; /* Muted, warm parchment color */
   font-family: 'Kanit', sans-serif;
   display: flex;
   flex-direction: column;
@@ -8,6 +8,7 @@ body {
   padding: 100px 20px 0;
   box-sizing: border-box;
   overflow-x: hidden;
+  color: #333; /* Dark text color for readability */
 }
 
 /* Header */
