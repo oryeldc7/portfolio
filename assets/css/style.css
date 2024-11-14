@@ -82,8 +82,20 @@ body { overflow-x: auto; }
 
 /* Text Styling */
 #main-heading, #second-heading, section h2, #projects h3 {
-  color: rgb(189, 145, 36);
+  color: rgb(189, 145, 36); /* Golden color */
   text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 2rem;
+  transition: 0.3s;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1), 0 0 15px rgba(189, 145, 36, 0.4);
+}
+
+#main-heading:hover, #second-heading:hover, section h2:hover, #projects h3:hover {
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(189, 145, 36, 0.5);
+  transform: translateY(-3px);
+  letter-spacing: 4px;
 }
 
 #main-heading { font-size: 36px; margin: 40px 0 20px; }
