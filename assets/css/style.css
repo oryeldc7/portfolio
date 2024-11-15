@@ -2,6 +2,7 @@
 body {
   background-color: #e9d8a6; /* Muted, warm parchment color */
   font-family: 'Almendra', serif; /* More decorative medieval-style font */
+  font-size: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
