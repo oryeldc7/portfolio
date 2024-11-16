@@ -1,28 +1,26 @@
 /* General Layout */
 body {
-  background-color: #e9d8a6; /* Muted, warm parchment color */
-  font-family: 'Almendra', serif; /* More decorative medieval-style font */
+  background-color: #e9d8a6;
+  font-family: 'Almendra', serif;
   font-size: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 100px 20px 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  color: #333; /* Dark text color for readability */
+  color: #333;
+  position: relative;
 }
 
-/* Header */
 .header {
   position: fixed;
   top: 0; left: 0;
   width: 100%;
-  z-index: 1000;
   background-color: yellow;
   padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
 
 .header .Profile {
@@ -32,15 +30,14 @@ body {
   position: absolute;
   left: 30px; top: 20px;
   transition: width 0.3s, height 0.3s, top 0.3s;
+  z-index: 20;
 }
 
-/* Content */
 .content {
   margin-left: 320px;
   padding: 20px;
   max-width: 70%;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 .primary ul {
@@ -58,49 +55,48 @@ body {
   transition: background-color 0.3s;
 }
 
-.primary ul li a:hover,
-.primary ul li a.active {
+.primary ul li a:hover, .primary ul li a.active {
   background-color: goldenrod;
   font-weight: bold;
   color: white;
 }
 
-/* Responsive Profile Adjustments */
+/* Responsive Media Queries */
 @media (max-width: 1024px) {
   .header .Profile { width: 200px; height: 200px; top: 30px; }
+  #projects ul li { max-width: 300px; }
 }
 
 @media (max-width: 768px) {
   .header { flex-direction: column; padding: 10px; }
   .header .Profile { width: 100px; height: 100px; top: 50px; left: 10px; border-radius: 50%; }
   .content { margin-left: 0; width: 100%; padding: 10px; }
+  .preview-img { width: 100%; margin: 10px 0; }
+  #projects ul li { max-width: 280px; }
 }
 
 @media (max-width: 480px) {
   .header .Profile { width: 50px; height: 50px; top: 60px; left: 10px; }
+  #projects ul li { max-width: 250px; }
 }
 
-body { overflow-x: auto; }
-
-/* Text Styling */
+/* Typography */
 #main-heading, #second-heading, section h2, #projects h3 {
-  color: rgb(158, 120, 28); /* Golden color */
+  color: rgb(158, 120, 28);
   text-align: center;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 2rem;
-  transition: 0.3s;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1), 0 0 15px rgba(189, 145, 36, 0.4); /* Soft glow effect */
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1), 0 0 15px rgba(189, 145, 36, 0.4);
 }
 
 #main-heading:hover, #second-heading:hover, section h2:hover, #projects h3:hover {
-  color: rgb(189, 145, 36); /* Keep the golden color on hover */
-  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(189, 145, 36, 0.5); /* Subtle glowing effect */
-  transform: translateY(-3px); /* Slight lift effect */
-  letter-spacing: 4px; /* Slightly more spacing on hover */
+  color: rgb(189, 145, 36);
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(189, 145, 36, 0.5);
+  transform: translateY(-3px);
+  letter-spacing: 4px;
 }
-
 
 #main-heading { font-size: 36px; margin: 40px 0 20px; }
 #second-heading, section h2 { font-size: 28px; margin-top: 30px; }
@@ -118,11 +114,16 @@ body { overflow-x: auto; }
 #colophon { text-align: center; margin-top: 150px; color: blue; padding: 20px 0; }
 #colophon h6 { margin: 0; line-height: 1.5; }
 
-a { color: blue; text-decoration: none; }
+/* Links */
+a {
+  color: blue;
+  text-decoration: none;
+}
+
 a:hover { background-color: goldenrod; }
 a:visited { color: darkblue; }
 
-/* Cover Letter, Preview Image, and Resume */
+/* Resume and Cover Letter */
 .cover-letter, #resume {
   background-color: white;
   padding: 30px;
@@ -139,6 +140,7 @@ a:visited { color: darkblue; }
 .cover-letter h2, #resume h2 { color: goldenrod; font-size: 20px; margin-bottom: 20px; }
 .cover-letter p { margin-bottom: 20px; text-align: justify; }
 
+/* Work Examples */
 .preview-img {
   width: 500px;
   height: auto;
@@ -148,14 +150,33 @@ a:visited { color: darkblue; }
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 768px) {
-  .preview-img { width: 100%; margin: 10px 0; }
+#projects ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 #projects ul li {
   display: flex;
-  align-items: center;
-  margin-bottom: 15px;
   flex-direction: column;
+  align-items: center;
   text-align: center;
+  max-width: 350px;
+}
+
+#projects ul li img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  margin-bottom: 10px; /* Just adds space between the image and the title */
+}
+
+#projects ul li img:hover {
+  transform: scale(1.05);
 }
