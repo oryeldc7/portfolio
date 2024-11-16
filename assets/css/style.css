@@ -84,7 +84,7 @@ body { overflow-x: auto; }
 
 /* Text Styling */
 #main-heading, #second-heading, section h2, #projects h3 {
-  color: rgb(189, 145, 36); /* Golden color */
+  color: rgb(158, 120, 28); /* Golden color */
   text-align: center;
   font-weight: 700;
   text-transform: uppercase;
