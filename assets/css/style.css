@@ -24,7 +24,7 @@ body {
 }
 
 .header .Profile {
-  width: 320px; height: 320px;
+  width: 280px; height: 280px;
   object-fit: cover;
   border-radius: 10px;
   position: absolute;
