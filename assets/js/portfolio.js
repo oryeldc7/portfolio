@@ -9,13 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".primary ul li a");
 
   navLinks.forEach(link => {
-    const href = link.getAttribute("href").split("/").pop();
+  const href = link.getAttribute("href").split("/").pop();
 
-    if (href === currentPage) {
-      link.classList.add("active");
-    } else {
-      link.classList.remove("active");
-    }
+  link.classList.remove("active");
+
+  if (href === currentPage && link.href === window.location.href) {
+    link.classList.add("active");
+  }
   });
 
 
@@ -29,8 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.getElementById("close");
   const prevBtn = document.getElementById("prev");
   const nextBtn = document.getElementById("next");
+  const caption = document.getElementById("lightbox-caption");
 
   let currentIndex = 0;
+  let zoomLevel = 1;
 
   function openLightbox(index) {
     currentIndex = index;
@@ -38,9 +40,17 @@ document.addEventListener("DOMContentLoaded", () => {
     updateImage();
   }
 
-  function updateImage() {
-    lightboxImg.src = images[currentIndex].src;
-    lightboxImg.alt = images[currentIndex].alt;
+ function updateImage() {
+  zoomLevel = 1;
+  lightboxImg.style.transform = "scale(1)";
+
+  lightboxImg.src = images[currentIndex].src;
+  lightboxImg.alt = images[currentIndex].alt;
+
+  const fig = images[currentIndex].closest("figure");
+  const text = fig.querySelector("figcaption").innerText;
+
+  caption.textContent = text;
   }
 
   function closeLightbox() {
@@ -82,6 +92,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "ArrowLeft") prevImage();
   });
 
-  
+  lightboxImg.addEventListener("wheel", (e) => {
+  e.preventDefault();
+
+  if (e.deltaY < 0) {
+    zoomLevel += 0.1; // zoom in
+  } else {
+    zoomLevel -= 0.1; // zoom out
+  }
+
+  zoomLevel = Math.max(1, Math.min(zoomLevel, 3)); // limit zoom (1x–3x)
+
+  lightboxImg.style.transform = `scale(${zoomLevel})`;
+});
+
+lightboxImg.addEventListener("click", () => {
+  zoomLevel = zoomLevel === 1 ? 2 : 1;
+  lightboxImg.style.transform = `scale(${zoomLevel})`;
+});
 
 });

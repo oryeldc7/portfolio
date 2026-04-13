@@ -2,7 +2,7 @@ body{background-color:#e9d8a6;font-family:'Almendra',serif;font-size:18px;displa
 
 .header{position:fixed;top:0;left:0;width:100%;background-color:yellow;padding:20px;display:flex;align-items:center;justify-content:center;z-index:10}
 
-.header .Profile{width:280px;height:280px;object-fit:cover;border-radius:10px;position:absolute;left:30px;top:20px;transition:width .3s,height .3s,top .3s;z-index:20}
+.header .Profile{width:250px;height:250px;object-fit:cover;border-radius:10px;position:absolute;left:30px;top:20px;transition:width .3s,height .3s,top .3s;z-index:20}
 
 .content{margin-left:320px;padding:20px;max-width:70%;box-sizing:border-box}
 
@@ -61,11 +61,15 @@ a:visited{color:darkblue}
 
 .gallery-grid img:hover{transform:scale(1.04);box-shadow:0 10px 25px rgba(0,0,0,.25)}
 
-#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);display:none;justify-content:center;align-items:center;z-index:9999}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);display:none;flex-direction:column;justify-content:center;align-items:center;z-index:9999}
 
 #lightbox-img{max-width:90%;max-height:85%;border-radius:10px}
 
-#close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer;z-index:10000}
+#lightbox-caption{margin-top:15px;text-align:center;font-size:18px;font-weight:700;color:rgb(189,145,36);letter-spacing:1.5px;text-shadow:0 0 8px rgba(189,145,36,.6),0 0 15px rgba(0,0,0,.8);max-width:80%}
+
+#lightbox-img{transition:transform .2s ease;cursor:zoom-in}
+
+#close{position:absolute;top:20px;right:30px;font-size:40px;color:#85bd1c;cursor:pointer;z-index:10000}
 
 #prev,#next{position:absolute;top:50%;transform:translateY(-50%);font-size:50px;color:#fff;cursor:pointer;z-index:10000;user-select:none;padding:10px}
 
