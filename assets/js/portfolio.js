@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
      LIGHTBOX (SIMPLE VERSION)
   ========================= */
 
-  const images = document.querySelectorAll("#gallery img");
+  const images = document.querySelectorAll("#gallery img, .resume-photo");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
   const closeBtn = document.getElementById("close");
