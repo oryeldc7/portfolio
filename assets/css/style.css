@@ -51,8 +51,28 @@ section {
   position:absolute;
   left:30px;
   top:20px;
-  transition:width .3s,height .3s,top .3s;
-  z-index:20
+  transition: width .3s,height .3s,top .3s, filter .3s ease, transform .3s ease;
+  z-index:20;
+  
+}
+
+.header .Profile:hover{
+  animation: logoGlowPulse 2.4s infinite ease-in-out;
+  transform: scale(1.04);
+}
+
+@keyframes logoGlowPulse{
+  0%{
+    filter: drop-shadow(0 0 8px rgba(212,175,55,0.5));
+  }
+  50%{
+    filter: drop-shadow(0 0 30px rgba(212,175,55,1))
+            drop-shadow(0 0 60px rgba(212,175,55,0.9))
+            drop-shadow(0 0 90px rgba(212,175,55,0.5));
+  }
+  100%{
+    filter: drop-shadow(0 0 8px rgba(212,175,55,0.5));
+  }
 }
 
 .primary ul{
@@ -475,4 +495,13 @@ a:visited{color:darkblue}
 @media(max-width:480px){
   .header .Profile{width:50px;height:50px;top:60px;left:10px}
   #projects ul li{max-width:250px}
+}
+
+body {
+  animation: pageFade 0.6s ease;
+}
+
+@keyframes pageFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
