@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Catch the Cat | Auriel Del Carmen</title>
+
+  <link href="../assets/css/style.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Almendra:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+  <a href="../index.html">
+    <img src="../images/Final_PuyPuy_Emblem_Shield_Only.png" class="Profile" />
+  </a>
+
+  <nav class="primary">
+    <ul>
+      <li><a href="../index.html">Profile</a></li>
+      <li><a href="../resume/index.html">Resume</a></li>
+      <li><a href="../cover-letter/index.html">Cover Letter</a></li>
+      <li><a href="../contact/index.html">Contact</a></li>
+      <li><a href="../work-examples/index.html">Projects</a></li>
+      <li><a href="../personal-photos/index.html">Travel Photos</a></li>
+      <li><a href="index.html" class="active">Cat Game</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="content">
+
+<section style="text-align:center;">
+
+  <h1 id="main-heading">Catch the Yellow Cat</h1>
+
+  <p class="indented-paragraph">
+    Catch the Car 🐱, Avoid the Hampter 🐹
+  </p>
+
+  <h2>Score: <span id="score">0</span></h2>
+  <h2>Time: <span id="time">20</span></h2>
+
+  <div id="gameArea">
+    <div id="cat">🐱</div>
+    <div id="hamster">🐹</div>
+  </div>
+
+  <button id="startBtn">Start Game</button>
+
+  <h2 id="message"></h2>
+
+</section>
+
+</main>
+
+<script>
+document.getElementById("startBtn").onclick = function () {
+
+  let score = 0;
+  let time = 20;
+
+  const cat = document.getElementById("cat");
+  const hamster = document.getElementById("hamster");
+  const scoreDisplay = document.getElementById("score");
+  const timeDisplay = document.getElementById("time");
+  const message = document.getElementById("message");
+  const gameArea = document.getElementById("gameArea");
+
+  function move(el) {
+    const rect = gameArea.getBoundingClientRect();
+    const size = 50;
+
+    const x = Math.random() * (rect.width - size);
+    const y = Math.random() * (rect.height - size);
+
+    el.style.left = x + "px";
+    el.style.top = y + "px";
+  }
+
+  function start() {
+    score = 0;
+    time = 20;
+
+    scoreDisplay.textContent = score;
+    timeDisplay.textContent = time;
+    message.textContent = "";
+
+    move(cat);
+    move(hamster);
+
+    cat.onclick = () => {
+      score++;
+      scoreDisplay.textContent = score;
+      move(cat);
+    };
+
+    hamster.onclick = () => {
+      score--;
+      scoreDisplay.textContent = score;
+      move(hamster);
+    };
+
+    const timer = setInterval(() => {
+      time--;
+      timeDisplay.textContent = time;
+
+      move(cat);
+      move(hamster);
+
+      if (time <= 0) {
+        clearInterval(timer);
+
+        message.textContent =
+          score >= 10 ? "You win 🐱" : "Hamster wins 🐹";
+      }
+    }, 1000);
+  }
+
+  start();
+};
+</script>
+
+    <!-- Footer Section -->
+    <footer id="colophon" role="contentinfo">
+      <h6>&copy; 2026 Auriel Del Carmen</h6>
+      <h6>Cat Game</h6>
+    </footer>
+
+
+</body>
+</html>
