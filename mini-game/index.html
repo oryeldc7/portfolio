@@ -1,14 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Catch the Cat | Auriel Del Carmen</title>
+<meta charset="utf-8" />
+<title>Catch the Cat | Auriel Del Carmen</title>
 
-  <link href="../assets/css/style.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Almendra:wght@400;700&display=swap" rel="stylesheet">
+<!-- YOUR EXISTING SITE CSS -->
+<link href="../assets/css/style.css" rel="stylesheet" />
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Almendra:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   GLOBAL SAFETY FIX (IMPORTANT)
+========================= */
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* =========================
+   MOBILE LAYOUT FIX
+========================= */
+
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 10px !important;
+  }
+
+  body {
+    padding: 120px 10px 20px;
+  }
+}
+
+/* =========================
+   GAME AREA (RESPONSIVE)
+========================= */
+
+#gameArea {
+  width: min(92vw, 500px);
+  height: min(60vh, 420px);
+  margin: 30px auto;
+  position: relative;
+  background: rgba(255,255,255,0.7);
+  border: 3px solid goldenrod;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+/* game objects */
+.emoji {
+  position: absolute;
+  font-size: 40px;
+  cursor: pointer;
+  user-select: none;
+  transition: top 0.2s ease, left 0.2s ease;
+  filter: drop-shadow(0 3px 3px rgba(0,0,0,0.2));
+  touch-action: manipulation;
+}
+
+/* button */
+#startBtn {
+  background: goldenrod;
+  border: none;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-family: 'Almendra', serif;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+#startBtn:hover {
+  background: #c99b2c;
+  transform: scale(1.05);
+}
+
+/* message */
+#message {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(158,120,28);
+}
+
+@media (min-width: 769px) {
+
+  .content {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 100% !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  section {
+    width: 100%;
+    max-width: 900px;
+  }
+
+}
+
+.indented-paragraph {
+  text-align: center !important;
+  max-width: 600px;
+  margin: 10px auto 20px auto;
+  line-height: 1.6;
+}
+
+</style>
+
 </head>
 
 <body>
+
+<!-- =========================
+   HEADER (YOUR ORIGINAL)
+========================= -->
 
 <header class="header">
   <a href="../index.html">
@@ -28,6 +143,10 @@
   </nav>
 </header>
 
+<!-- =========================
+   MAIN CONTENT
+========================= -->
+
 <main class="content">
 
 <section style="text-align:center;">
@@ -35,15 +154,15 @@
   <h1 id="main-heading">Catch the Yellow Cat</h1>
 
   <p class="indented-paragraph">
-    Catch the Car 🐱, Avoid the Hampter 🐹
+    Catch the Cat 🐱, Avoid the Hamster 🐹
   </p>
 
   <h2>Score: <span id="score">0</span></h2>
-  <h2>Time: <span id="time">20</span></h2>
+  <h2>Time: <span id="time">15</span></h2>
 
   <div id="gameArea">
-    <div id="cat">🐱</div>
-    <div id="hamster">🐹</div>
+    <div id="cat" class="emoji">🐱</div>
+    <div id="hamster" class="emoji">🐹</div>
   </div>
 
   <button id="startBtn">Start Game</button>
@@ -54,79 +173,101 @@
 
 </main>
 
+<!-- =========================
+   GAME JS
+========================= -->
+
 <script>
-document.getElementById("startBtn").onclick = function () {
 
-  let score = 0;
-  let time = 20;
+const gameArea = document.getElementById("gameArea");
+const cat = document.getElementById("cat");
+const hamster = document.getElementById("hamster");
+const scoreEl = document.getElementById("score");
+const timeEl = document.getElementById("time");
+const message = document.getElementById("message");
+const startBtn = document.getElementById("startBtn");
 
-  const cat = document.getElementById("cat");
-  const hamster = document.getElementById("hamster");
-  const scoreDisplay = document.getElementById("score");
-  const timeDisplay = document.getElementById("time");
-  const message = document.getElementById("message");
-  const gameArea = document.getElementById("gameArea");
+let score = 0;
+let time = 15;
+let timer = null;
+let running = false;
 
-  function move(el) {
-    const rect = gameArea.getBoundingClientRect();
-    const size = 50;
+function move(el) {
+  const rect = gameArea.getBoundingClientRect();
+  const size = 40;
 
-    const x = Math.random() * (rect.width - size);
-    const y = Math.random() * (rect.height - size);
+  const x = Math.random() * (rect.width - size);
+  const y = Math.random() * (rect.height - size);
 
-    el.style.left = x + "px";
-    el.style.top = y + "px";
-  }
+  el.style.left = x + "px";
+  el.style.top = y + "px";
+}
 
-  function start() {
-    score = 0;
-    time = 20;
+function startGame() {
+  score = 0;
+  time = 15;
+  running = true;
 
-    scoreDisplay.textContent = score;
-    timeDisplay.textContent = time;
-    message.textContent = "";
+  scoreEl.textContent = score;
+  timeEl.textContent = time;
+  message.textContent = "";
+
+  move(cat);
+  move(hamster);
+
+  if (timer) clearInterval(timer);
+
+  timer = setInterval(() => {
+    if (!running) return;
+
+    time--;
+    timeEl.textContent = time;
 
     move(cat);
     move(hamster);
 
-    cat.onclick = () => {
-      score++;
-      scoreDisplay.textContent = score;
-      move(cat);
-    };
+    if (time <= 0) {
+      running = false;
+      clearInterval(timer);
 
-    hamster.onclick = () => {
-      score--;
-      scoreDisplay.textContent = score;
-      move(hamster);
-    };
+      message.textContent =
+        score >= 10 ? "You win 🐱" : "Game Over 🐹";
+    }
+  }, 1000);
+}
 
-    const timer = setInterval(() => {
-      time--;
-      timeDisplay.textContent = time;
+/* desktop + mobile tap support */
+function bind(el, action) {
+  el.addEventListener("click", action);
+  el.addEventListener("touchstart", action);
+}
 
-      move(cat);
-      move(hamster);
+bind(cat, () => {
+  if (!running) return;
+  score++;
+  scoreEl.textContent = score;
+  move(cat);
+});
 
-      if (time <= 0) {
-        clearInterval(timer);
+bind(hamster, () => {
+  if (!running) return;
+  score--;
+  scoreEl.textContent = score;
+  move(hamster);
+});
 
-        message.textContent =
-          score >= 10 ? "You win 🐱" : "Hamster wins 🐹";
-      }
-    }, 1000);
-  }
+startBtn.onclick = startGame;
 
-  start();
-};
 </script>
 
-    <!-- Footer Section -->
-    <footer id="colophon" role="contentinfo">
-      <h6>&copy; 2026 Auriel Del Carmen</h6>
-      <h6>Cat Game</h6>
-    </footer>
+<!-- =========================
+   FOOTER
+========================= -->
 
+<footer id="colophon" role="contentinfo">
+  <h6>&copy; 2026 Auriel Del Carmen</h6>
+  <h6>Cat Game</h6>
+</footer>
 
 </body>
 </html>
