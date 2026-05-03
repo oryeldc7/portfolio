@@ -138,8 +138,8 @@ html, body {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 70px;
-    right: 10px;
+    top: 100%;
+    right: 0;
     background: yellow;
     padding: 10px;
     border-radius: 10px;
@@ -156,6 +156,7 @@ html, body {
   }
 }
 
+
 </style>
 
 </head>
@@ -163,12 +164,17 @@ html, body {
 <body>
 
 <header class="header">
-  <a href="../index.html">
-    <img src="../images/Final_PuyPuy_Emblem_Shield_Only.png" class="Profile" />
+
+  <a href="../index.html" class="logo-link">
+    <img src="../images/Final_PuyPuy_Emblem_Shield_Only.png" alt="Logo of Auriel" class="Profile">
   </a>
 
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    ☰
+  </button>
+
   <nav class="primary">
-    <ul>
+    <ul id="navList">
       <li><a href="../index.html">Profile</a></li>
       <li><a href="../resume/index.html">Resume</a></li>
       <li><a href="../cover-letter/index.html">Cover Letter</a></li>
@@ -179,7 +185,6 @@ html, body {
     </ul>
   </nav>
 
-  <button class="hamburger" id="hamburger">☰</button>
 </header>
 
 <main class="content">
@@ -192,7 +197,7 @@ html, body {
 Tap to pet Kelly The Cat 🐱 and avoid disturbing Puypuy The Hampter 🐹.
 </p>
 
-<h2>Cats Petted: <span id="score">0</span></h2>
+<h2>Cats Helped: <span id="score">0</span></h2>
 <h2>Time: <span id="time">20</span></h2>
 
 <div id="gameArea">
@@ -429,7 +434,8 @@ const hamburger = document.getElementById("hamburger");
 const navList = document.querySelector(".primary ul");
 
 hamburger.addEventListener("click", () => {
-  navList.classList.toggle("show");
+  const isOpen = navList.classList.toggle("show");
+  hamburger.setAttribute("aria-expanded", isOpen);
 });
 
 </script>
